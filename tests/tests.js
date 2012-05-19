@@ -80,3 +80,15 @@ var template3 = function(two) {};
 var w3 = negotiator(blorg,template3);
 test(w3(9).f6(1), [1,9],
   "Injection should take place with injectable in last position");
+blorg.sum= function(a, b, $context, $wrapper) {
+  $context.result = a + b;
+  return $wrapper;
+}
+
+var template4 = function(a, b, $context) {
+  $context.a = a;
+  $context.b = b;
+}
+w4 = negotiator(blorg,template4);
+test(w4(1,2).sum().$context.result, 3,
+  "Functions of the real object should be able to modify the context.");
