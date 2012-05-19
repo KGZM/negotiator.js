@@ -19,7 +19,7 @@ utils.parameterNames = (func) ->
 
   funcArgs = func.toString().split('(')[1].split(')')[0].split(',')
 
-  k.trim() for k in funcArgs
+  return (k.trim() for k in funcArgs)
 
 
 # Inject parameters from a context object into a function.
@@ -33,7 +33,7 @@ utils.injectAndApply =  (func, parameters, context, target) ->
     parameters[position] = context[name] if context[name]?
 
   parameters.length = signature.length;
-  func.apply target ? {}, parameters
+  return func.apply target ? {}, parameters
 
 
 # Constructor for proxy object.
