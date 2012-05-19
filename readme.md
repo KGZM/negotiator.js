@@ -26,13 +26,13 @@ Works in node or in the browser.
 
 
 ## Properties of the wrapper:
-    __real__    : reference to the object being wrapped.
-    __context__ : a map of the paramaters to be injected,
+    $real       : reference to the object being wrapped.
+    $context : a map of the paramaters to be injected,
                 : set by calling the wrapper.
                 : from the above example ---
-                : wrappedX.__context__ => {}
-                : wrappedX('one','two').__context__ => { one: 1, two: 2 }
-                : wrappedX.__context__ => still {}
+                : wrappedX.$context => {}
+                : wrappedX('one','two').$context => { one: 1, two: 2 }
+                : wrappedX.$context => still {}
 
 ## Caveats:
   Injected parameters need to be at the end of the parameter list
