@@ -1,0 +1,18 @@
+{
+  "author": "Kobie Maitland <kobie.maitland@gmail.com>",
+  "name": "negotiator.js",
+  "description": "Object wrapper for parameter injection",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KGZM/negotiator.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KGZM/negotiator.js.git"
+  },
+  "main": "lib/negotiator.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
