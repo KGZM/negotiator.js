@@ -2,6 +2,8 @@
 
 A small tool for proxying objects behind a wrapper that can inject parameters into their methods.
 
+Requires underscore.
+
 # Usage
 Works in node or in the browser.
 
