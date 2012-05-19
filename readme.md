@@ -4,14 +4,14 @@ A small tool for proxying objects behind a wrapper that can inject parameters in
 
 Requires underscore.
 
-# Usage
+## Usage
 Works in node or in the browser.
 
 
     negotiator = require('negotiator')
     negotiator(object, templateFunction)
 
-# Example
+## Example
     var x = someInstanceOfAClass;
     x.go = function(mission,speed,destination) {
       return [mission, speed, destination];
@@ -25,7 +25,7 @@ Works in node or in the browser.
     wrappedY('fast','mars').go('victory') //['victory','warp','mars']
 
 
-# Properties of the wrapper:
+## Properties of the wrapper:
     __real__    : reference to the object being wrapped.
     __context__ : a map of the paramaters to be injected,
                 : set by calling the wrapper.
@@ -34,7 +34,7 @@ Works in node or in the browser.
                 : wrappedX('one','two').__context__ => { one: 1, two: 2 }
                 : wrappedX.__context__ => still {}
 
-# Caveats:
+## Caveats:
   Injected parameters need to be at the end of the parameter list
   they can't be intersperced with regular parameters, or put them at the
   beginning and then have regular access to normal parameters. 

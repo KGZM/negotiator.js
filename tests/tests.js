@@ -69,3 +69,11 @@ blorg.f5 = function(one, two) {
 w2 = negotiator(blorg, template2);
 test(w2(5,7).f5(), [5,9], 
   "Contextbuilder overrides defaults.")
+
+blorg.f6 = function(one,two) {
+  return [one,two]
+}
+var template3 = function(two) {};
+var w3 = negotiator(blorg,template3);
+test(w3(9).f6(1), [1,9],
+  "Injection should take place with injectable in last position");
