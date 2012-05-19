@@ -8,7 +8,10 @@ parameters into their methods.
 
 # Extract parameter names from a function,
 # position is given by position this array.
-_ = require('underscore');
+if module
+  _ = require('underscore');
+else
+  _ = window._
 
 utils = {};
 
@@ -36,13 +39,13 @@ utils.injectAndApply =  (func, parameters, context, target) ->
 # Constructor for proxy object.
 utils.Proxy = (real) ->
 
-  @__real__ = real
+  @$real = real
   self = this
 
   for key, method of real when typeof method is 'function'
     do (method, key) ->
       self[key] = ->
-        utils.injectAndApply method, arguments, @__context__ ? {}, @__real__
+        utils.injectAndApply method, arguments, @$context ? {}, @$real
   
   return this
 
@@ -63,7 +66,7 @@ utils.innerWrapper = (proxy, templateFunction, parameters) ->
   wrapper = ->
     utils.innerWrapper(proxy,templateFunction,arguments);
 
-  wrapper.__context__ = 
+  wrapper.$context = 
     templateFunction.apply(proxy, parameters) ?
     utils.buildContextFromParams templateFunction, parameters
   wrapper.__proto__ = proxy;

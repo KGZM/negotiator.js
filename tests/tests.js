@@ -41,6 +41,7 @@ blorg.f3 = function(trouble, T, speed) {
   return [trouble, T, speed];
 }
 pBlorg = new negotiator.utils.Proxy(blorg);
+
 test(pBlorg.f2(), blorg.f2(),
   "Proxied function should access the real values properly.")
 test(pBlorg.f3(1, 2, 3), [1,2,3],
@@ -57,9 +58,10 @@ blorg.f4 = function(one) {
 }
 
 wBlorg = negotiator(blorg, template);
-test(wBlorg(5).__context__, {one: 5},
+test(wBlorg(5).$context, {one: 5},
   "Function context should be set from template.");
-test(wBlorg(5).f4(), wBlorg(5).__context__.one, "Context variables should visible within wrapped methods.");
+test(wBlorg(5).f4(), wBlorg(5).$context.one, 
+  "Context variables should visible within wrapped methods.");
 var template2 = function(one, two) {
   return {one: one, two: 9};
 }
