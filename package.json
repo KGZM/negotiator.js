@@ -1,7 +1,7 @@
 {
   "author": "Kobie Maitland <kobie.maitland@gmail.com>",
   "name": "negotiator.js",
-  "description": "Object wrapper for parameter injection",
+  "description": "Parameter injection object wrapper for Coffeescript and Javascript",
   "version": "0.0.0",
   "homepage": "https://github.com/KGZM/negotiator.js",
   "repository": {
