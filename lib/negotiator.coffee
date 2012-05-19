@@ -1,6 +1,6 @@
 ###
 negotiator.js
-
+ 
 A small tool for proxying objects behind a wrapper that can inject
 parameters into their methods.
 ###
