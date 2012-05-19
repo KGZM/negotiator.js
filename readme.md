@@ -3,11 +3,13 @@
 A small tool for proxying objects behind a wrapper that can inject parameters into their methods.
 
 # Usage
-In the browser just stick it in a script tag, in node require it like so.
+Works in node or in the browser.
+
+
     negotiator = require('negotiator')
+    negotiator(object, templateFunction)
 
 # Example
-    negotiator(object, templateFunction)
     var x = someInstanceOfAClass;
     x.go = function(mission,speed,destination) {
       return [mission, speed, destination];
@@ -45,4 +47,4 @@ In the browser just stick it in a script tag, in node require it like so.
   encapsulated. However, you can set them via any of their own proxied methods 
   or even the template function itself, if you so desired.
 
-# Copyright (c) 2012 [Kobie Maitland]
+Copyright (c) 2012 [Kobie Maitland]
