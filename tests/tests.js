@@ -58,12 +58,13 @@ blorg.f4 = function(one) {
 }
 
 wBlorg = negotiator(blorg, template);
-test(wBlorg(5).$context, {one: 5},
+test(wBlorg(5).$context.one, 5,
   "Function context should be set from template.");
 test(wBlorg(5).f4(), wBlorg(5).$context.one, 
   "Context variables should visible within wrapped methods.");
-var template2 = function(one, two) {
-  return {one: one, two: 9};
+var template2 = function(one, two, $context) {
+  $context.one = one;
+  $context.two = 9;
 }
 blorg.f5 = function(one, two) {
   return [one, two];

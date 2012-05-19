@@ -24,7 +24,7 @@ utils.parameterNames = (func) ->
 
 # Inject parameters from a context object into a function.
 # Passed parameters are supplied by the 'params' argument.
-utils.injectAndApply =  (func, parameters, context, target) ->
+utils.injectAndApply =(func, parameters, context, target) ->
 
   signature = utils.parameterNames func
   parameters = [] if _.isEmpty(parameters)
@@ -65,10 +65,15 @@ utils.buildContextFromParams = (func, parameters) ->
 utils.innerWrapper = (proxy, templateFunction, parameters) ->
   wrapper = ->
     utils.innerWrapper(proxy,templateFunction,arguments);
-
-  wrapper.$context = 
-    templateFunction.apply(proxy, parameters) ?
-    utils.buildContextFromParams templateFunction, parameters
+    
+  context = utils.buildContextFromParams templateFunction, parameters 
+  context.$real = proxy.$real
+  context.$wrapper = wrapper
+  context.$proxy =  proxy
+  context.$context = context;
+  utils.injectAndApply templateFunction, parameters, context, proxy
+  wrapper.$context = context;
+  
   wrapper.__proto__ = proxy;
 
   return wrapper
