@@ -27,7 +27,7 @@ utils.parameterNames = (func) ->
 utils.injectAndApply =(func, parameters, context, target) ->
 
   signature = utils.parameterNames func
-  parameters = [] if _.isEmpty(parameters)
+  parameters = [] if _.isEmpty parameters 
 
   for position, name of signature
     parameters[position] = context[name] if context[name]?
@@ -66,15 +66,27 @@ utils.innerWrapper = (proxy, templateFunction, parameters) ->
   wrapper = ->
     utils.innerWrapper(proxy,templateFunction,arguments);
     
+  # Build an initial context from the parameters and the
+  # signature of the template function.
   context = utils.buildContextFromParams templateFunction, parameters 
+
+  # Add default injectables
   context.$real = proxy.$real
   context.$wrapper = wrapper
   context.$proxy =  proxy
-  context.$context = context;
+  context.$context = context
+
+  # Inject the context into the template function and run it against
+  # the proxy.
   utils.injectAndApply templateFunction, parameters, context, proxy
-  wrapper.$context = context;
+
+  # put the context on the wrapper so that it can be used in proxied
+  # method calls.
+  wrapper.$context = context
   
-  wrapper.__proto__ = proxy;
+  # inherit from the proxy so its methods can be called from the
+  # wrapper.
+  wrapper.__proto__ = proxy
 
   return wrapper
 
