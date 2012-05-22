@@ -8,7 +8,7 @@ parameters into their methods.
 
 # Extract parameter names from a function,
 # position is given by position this array.
-if module
+if module?
   _ = require('underscore');
 else
   _ = window._
@@ -24,7 +24,7 @@ utils.parameterNames = (func) ->
 
 # Inject parameters from a context object into a function.
 # Passed parameters are supplied by the 'params' argument.
-utils.injectAndApply =(func, parameters, context, target) ->
+utils.injectAndApply = (func, parameters, context, target) ->
 
   signature = utils.parameterNames func
   parameters = [] if _.isEmpty parameters 
@@ -100,7 +100,7 @@ utils.makeWrapper = (real, templateFunction) ->
 negotiator = utils.makeWrapper
 negotiator.utils = utils;
 
-if module
+if module?
   module.exports = negotiator
 else
   window.negotiator = negotiator

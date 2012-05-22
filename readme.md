@@ -27,15 +27,15 @@ Works in node or in the browser.
 
 
 ## Context for the templateFunction / default injectables
-    $real       : the object being wrapped.
-    $proxy      : the proxy being used by the wrapper.
-    $wrapper    : a reference to the wrapper itself.
-    $context    : a map of the paramaters to be injected
-                : set by calling the wrapper.
-                : from the above example ---
-                : wrappedX.$context // contains default injectables
-                : wrappedX('one','two').$context // defaults + { one: 1, two: 2 }
-                : wrappedX.$context => // only default injectables again
+    $real       | the object being wrapped.
+    $proxy      | the proxy being used by the wrapper.
+    $wrapper    | a reference to the wrapper itself.
+    $context    | a map of the paramaters to be injected
+                | set by calling the wrapper.
+                | from the above example ---
+                | wrappedX.$context // contains default injectables
+                | wrappedX('one','two').$context // defaults + { one: 1, two: 2 }
+                | wrappedX.$context => // only default injectables again
 
 ## Caveats:
   Injected parameters need to be at the end of the parameter list
